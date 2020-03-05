@@ -22,12 +22,7 @@ namespace ProductSKU.PageObject
         private IWebElement TitleSearch => _driver.FindElement(By.XPath("//h1[contains(.,'Search')]/parent::div"));
         private IList<IWebElement> ProductTitle => _driver.FindElements(By.XPath("//div[@class='h5 sub_title']/a"));
 
-        //*[@id="shopify-section-product-template"]/div[1]/div[2]/div/div/div[1]/div[2]/p[2]/span[1]/span/span
 
-        /*public string VerifyPageOpened()
-        {
-            return PageTitleVerify.Text;
-        }    */
         // Type Prduct SKU in Search filter field
         public void SearchSKUNumber(string product)
         {
