@@ -79,9 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
+    <Compile Include="PageObject\ProductDetailsPageCA.cs" />
     <Compile Include="PageObject\ProductDetailsPage.cs" />
+    <Compile Include="PageObject\ProductsPageCA.cs" />
     <Compile Include="PageObject\ProductsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestsScripts\GradiatorTestSKUCA.cs" />
     <Compile Include="TestsScripts\GradiatorTestSKU.cs" />
     <Compile Include="WebDriver\DriverUtils.cs" />
   </ItemGroup>

@@ -10,17 +10,18 @@ using System.Threading.Tasks;
 
 namespace ProductSKU.PageObject
 {
-    public class ProductsPage
+    public class ProductsPageCA
     {
         private IWebDriver _driver;
-        public ProductsPage(IWebDriver driver)
+        public ProductsPageCA(IWebDriver driver)
         {
             _driver = driver;
         }
 
         private IWebElement InputSKUinFilter => _driver.FindElement(By.XPath("(//li[@class='search_container']//input[@name='q'])[2]"));
         private IWebElement TitleSearch => _driver.FindElement(By.XPath("//h1[contains(.,'Search')]/parent::div"));
-        private IList<IWebElement> ProductTitle => _driver.FindElements(By.XPath("//div[@class='h5 sub_title']/a"));
+        // private IList<IWebElement> ProductTitle => _driver.FindElements(By.XPath("//div[@class='isp_product_info']/a"));
+        private IList<IWebElement> ProductTitle => _driver.FindElements(By.ClassName("isp_product_info"));
 
 
         // Type Prduct SKU in Search filter field
@@ -28,7 +29,12 @@ namespace ProductSKU.PageObject
         {
             InputSKUinFilter.SendKeys(product);
 
-           InputSKUinFilter.SendKeys(Keys.Enter);
+            InputSKUinFilter.SendKeys(Keys.Enter);
+
+        }
+        public void ClearSKUNumber() 
+        { 
+            InputSKUinFilter.Clear();
         }
 
         public string VerifySearchTitle()
