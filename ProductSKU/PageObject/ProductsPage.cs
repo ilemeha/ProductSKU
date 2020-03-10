@@ -28,7 +28,7 @@ namespace ProductSKU.PageObject
         {
             InputSKUinFilter.SendKeys(product);
 
-           InputSKUinFilter.SendKeys(Keys.Enter);
+            InputSKUinFilter.SendKeys(Keys.Enter);
         }
 
         public string VerifySearchTitle()

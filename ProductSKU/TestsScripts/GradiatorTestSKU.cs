@@ -42,7 +42,7 @@ namespace ProductSKU.TestsScripts
         [Test]
         public void VerifyGradiatorTestSKU()
         {
-            var pageLoadDelay = TimeSpan.FromSeconds(2);
+            var pageLoadDelay = TimeSpan.FromSeconds(3);
 
             var pathToSkuFile = @"C:\Users\Iryna Lemeha\Downloads\Feb Sale Price Sheet - GDR - Sheet1.csv";
             var rows = File.ReadAllLines(pathToSkuFile).Skip(1).ToArray();
@@ -55,7 +55,7 @@ namespace ProductSKU.TestsScripts
 
                 driver.Navigate().GoToUrl(Config.GetUrl());
                 var products = new ProductsPage(driver);
-
+                //rows.Length
                 for (var rowNumber = 0; rowNumber < rows.Length; rowNumber++)
                 {
                     var row = rows[rowNumber];

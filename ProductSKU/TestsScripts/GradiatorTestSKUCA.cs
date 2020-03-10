@@ -40,9 +40,9 @@ namespace ProductSKU.TestsScripts
         }
 
         [Test]
-        public void VerifyGradiatorTestSKU()
+        public void VerifyGradiatorTestSKUCA()
         {
-            var pageLoadDelay = TimeSpan.FromSeconds(2);
+            var pageLoadDelay = TimeSpan.FromSeconds(5);
 
             var pathToSkuFile = @"C:\Users\Iryna Lemeha\Downloads\Feb Sale Price Sheet - GDR - Sheet1.csv";
             var rows = File.ReadAllLines(pathToSkuFile).Skip(1).ToArray();
@@ -56,7 +56,7 @@ namespace ProductSKU.TestsScripts
                 driver.Navigate().GoToUrl(Config.GetUrl());
                 var products = new ProductsPageCA(driver);
                 //rows.Length
-                for (var rowNumber = 0; rowNumber < 10; rowNumber++)
+                for (var rowNumber = 0; rowNumber < rows.Length; rowNumber++)
                 {
                     var row = rows[rowNumber];
                     var cells = row.Split(',').Select(x => x.Trim()).ToArray();
@@ -66,30 +66,38 @@ namespace ProductSKU.TestsScripts
                     //Console.WriteLine($"Row #{rowNumber + 2}; SKU={sku};  salePrice={salePrice}");
 
                     //Thread.Sleep(TimeSpan.FromSeconds(1));
+                    Thread.Sleep(pageLoadDelay);
 
                     products.SearchSKUNumber(sku);
-                    Thread.Sleep(pageLoadDelay);
-                    products.ClearSKUNumber();
+                    //Thread.Sleep(pageLoadDelay);
+                    //products.ClearSKUNumber();
                     //Retry(() => products.SearchSKUNumber(sku));
                     Thread.Sleep(pageLoadDelay); // we have to wait for the search results to refresh
 
-                    var searchResultProductsCount = products.GetSearchResultProductsCount();
+                    var searchResultProductsCount = Convert.ToInt32(products.GetResultNumbers());
                     if (searchResultProductsCount == 0)
                     {
+                        
                         //noResultsRows.Add(rowNumber, sku);
                         errors.Add($"NO Results in row #{rowNumber + 2}; SKU={sku}");
+                        products.ClearSKUNumber();
                         continue;
                     }
+                   
+                    products.ClearSKUNumber();
 
                     if (searchResultProductsCount != 1)
                     {
                         errors.Add($"More than one product in search results #{rowNumber + 2}; SKU={sku}");
+                        
                         continue;
                     }
-
+                   // Thread.Sleep(pageLoadDelay);
                     products.OpenFirstSearchResult();
+                
+               
 
-                    Thread.Sleep(pageLoadDelay);
+                    Thread.Sleep(1000);
 
                     var productDetailsPage = new ProductDetailsPageCA(driver);
 

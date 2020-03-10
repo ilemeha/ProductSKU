@@ -21,7 +21,7 @@ namespace ProductSKU.PageObject
 
         private IWebElement VerifySKU => _driver.FindElement(By.XPath("//p[@class='sku']/span"));
         private IWebElement CurrentPrice => _driver.FindElement(By.XPath("//span[@class='current_price']/span[@class='money']"));
-        private IList<IWebElement> ColorOptions => _driver.FindElements(By.CssSelector(".section.product_section.clearfix.js-product_section .swatch_options .color.available"));
+        private IList<IWebElement> ColorOptions => _driver.FindElements(By.CssSelector(".section.product_section.clearfix.js-product_section .swatch.clearfix .color.available"));
 
         public string GetProductDetailsSKUNumber()
         {

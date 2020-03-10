@@ -20,8 +20,14 @@ namespace ProductSKU.PageObject
 
         private IWebElement InputSKUinFilter => _driver.FindElement(By.XPath("(//li[@class='search_container']//input[@name='q'])[2]"));
         private IWebElement TitleSearch => _driver.FindElement(By.XPath("//h1[contains(.,'Search')]/parent::div"));
-        // private IList<IWebElement> ProductTitle => _driver.FindElements(By.XPath("//div[@class='isp_product_info']/a"));
-        private IList<IWebElement> ProductTitle => _driver.FindElements(By.ClassName("isp_product_info"));
+        private IList<IWebElement> ProductPluginTitle => _driver.FindElements(By.XPath("//div[@class='isp_product_info']/a/div[@class='isp_product_title']"));
+        //private IList<IWebElement> ProductPluginTitle => _driver.FindElements(By.XPath("//div[2]/a/div"));
+        
+        //private IList<IWebElement> ProductPluginTitle => _driver.FindElements(By.XPath("//*[@id='isp_search_results_container']/li/div[2]/a/div"));
+        private IWebElement ProductTitle2 => _driver.FindElement(By.XPath("//div[@class='h5 sub_title']/a"));
+        private IWebElement ResultNumbers => _driver.FindElement(By.Id("isp_results_summary_total_results"));
+        
+
 
 
         // Type Prduct SKU in Search filter field
@@ -36,20 +42,26 @@ namespace ProductSKU.PageObject
         { 
             InputSKUinFilter.Clear();
         }
-
-        public string VerifySearchTitle()
+        
+        public string GetResultNumbers()
         {
-            return TitleSearch.Text;
+            return ResultNumbers.Text;
         }
 
         public int GetSearchResultProductsCount()
         {
-            return ProductTitle.Count;
-        }
+            return ProductPluginTitle.Count;
 
+        }
+     
         public void OpenFirstSearchResult()
         {
-            ProductTitle.First().Click();
+            ProductPluginTitle.First().Click();
+        }
+
+        public void GotoProductPage()
+        {
+            ProductTitle2.Click();
         }
     }
 
