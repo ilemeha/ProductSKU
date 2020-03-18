@@ -79,11 +79,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
-    <Compile Include="PageObject\DashboardPage.cs" />
+    <Compile Include="PageObject\UsableAllDevices.cs" />
+    <Compile Include="PageObject\UsableSomeDevices.cs" />
     <Compile Include="PageObject\LogIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData\LoginData.cs" />
-    <Compile Include="UTestScripts\DashboardTest.cs" />
+    <Compile Include="UTestScripts\UsableAllDevicesTest.cs" />
+    <Compile Include="UTestScripts\UsableSomeDevicesTest.cs" />
     <Compile Include="UTestScripts\LoginTest.cs" />
     <Compile Include="WebDriver\DriverUtils.cs" />
   </ItemGroup>

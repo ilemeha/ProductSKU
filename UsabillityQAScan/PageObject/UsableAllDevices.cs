@@ -4,21 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace UsabillityQAScan.PageObject
 {
-    public class DashboardPage
+    public class UsableAllDevices
     {
         private IWebDriver _driver;
-        public DashboardPage(IWebDriver driver) {
+        public UsableAllDevices(IWebDriver driver) {
             _driver = driver;
         }
         private IWebElement NewQuickTestBtn => _driver.FindElement(By.XPath("//a[contains(text(),'New quick test')]"));
         private IWebElement TypePageName => _driver.FindElement(By.Id("editor-basic-name"));
-        private IWebElement PageURL => _driver.FindElement(By.XPath("//fieldset[2]/div[2]/input"));
-        private IWebElement LocateToDropdown => _driver.FindElement(By.XPath("//button[@id='picked-device']/span"));
-        private SelectElement PickUpDevice => new SelectElement(_driver.FindElement(By.XPath("//div[@class='dropdown device-picker-device open']/div[@class='dropdown-menu']/button[@class='dropdown-item'][2]/span[2]")));
+        private IWebElement TypePageURL => _driver.FindElement(By.XPath("//fieldset[2]/div[2]/input"));
+        private IWebElement LocateToDropdown => _driver.FindElement(By.XPath("//fieldset[@class='magical-dropdown dropdown']"));
+        //private SelectElement PickUpDevice => new SelectElement(_driver.FindElement(By.XPath("//div[@class='dropdown device-picker-device open']/div[@class='dropdown-menu']/button[@class='dropdown-item'][2]/span[2]")));
         //*[@id="application-main-content"]/article/div[3]/div/div[2]/div/div[2]/div/div/fieldset[3]/div[2]/div[1]/div/button[4]/span[2]
         //dropdown device-picker-device open
         //1. Apple iPad 7th generation (iOS 13)
@@ -59,23 +60,34 @@ namespace UsabillityQAScan.PageObject
 
         public void TypeProjectURL(string projectURL)
         {
-            PageURL.SendKeys(projectURL);
+            TypePageURL.SendKeys(projectURL);
         }
         public void ClickDropdownButton()
         {
             LocateToDropdown.Click();
+            Thread.Sleep(2000);
+           
+           // var js = (IJavaScriptExecutor)_driver;
+           // js.ExecuteScript("document.getElementById('dropdown-toggle-device-picker').dispatchEvent(new Event('mousedown'))");
+            
+            _driver.FindElement(By.Id("label-device-picker-11")).Click();
         }
 
-        public void SelectDevice()
+
+        public string[] GetDevicesList()
         {
-            //  DeviceChoice.SelectByValue();
-
-            var js = (IJavaScriptExecutor)_driver;
-            js.ExecuteScript("$('#dropdown-toggle-device-picker').dispatchEvent(new Event('mousedown'))");
-            _driver.FindElement(By.Id("label-device-picker-1")).Click();
-
+            var elements = _driver.FindElements(By.XPath("//a[contains(@id, 'label-device-picker-')]/span"));
+            return elements.Select(element => element.Text).ToArray();
         }
-        public void ClickSubmitButton()
+
+        public void SelectDevice(int number)
+        {
+            var js = (IJavaScriptExecutor)_driver;
+            js.ExecuteScript("document.getElementById('dropdown-toggle-device-picker').dispatchEvent(new Event('mousedown'))");
+            _driver.FindElement(By.Id($"label-device-picker-{number}")).Click();
+        }
+
+        public void ClickCreateButton()
         {
             CreateBbtn.Click();
         }
