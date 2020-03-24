@@ -44,7 +44,8 @@ namespace ProductSKU.TestsScripts
         {
             var pageLoadDelay = TimeSpan.FromSeconds(5);
 
-            var pathToSkuFile = @"C:\Users\Iryna Lemeha\Downloads\Feb Sale Price Sheet - GDR - Sheet1.csv";
+            // var pathToSkuFile = @"C:\Users\Iryna Lemeha\Downloads\Feb Sale Price Sheet - GDR - Sheet1.csv";
+            var pathToSkuFile = @"C:\Users\Iryna Lemeha\source\repos\ProductSKU\FebSalePriceGDR.csv";
             var rows = File.ReadAllLines(pathToSkuFile).Skip(1).ToArray();
 
             var errors = new List<string>();

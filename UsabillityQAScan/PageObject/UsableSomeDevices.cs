@@ -152,7 +152,7 @@ namespace UsabillityQAScan.PageObject
         {
             ScanedPageName.Click();
             string url = _driver.Url;
-            Console.WriteLine($"Page Url '{url}'  ");
+            Console.WriteLine($" {url} ");
         }
         public void CloseScanedPage()
         {

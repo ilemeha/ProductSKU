@@ -11,7 +11,7 @@ using UsabillityQAScan.Configuration;
 
 
 
-namespace PUsabillityQAScan.WebDriver
+namespace UsabillityQAScan.WebDriver
 {
     public class DriverUtils
     {

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using PUsabillityQAScan.WebDriver;
+using UsabillityQAScan.WebDriver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
