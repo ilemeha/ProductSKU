@@ -8,7 +8,7 @@ namespace UsabillityQAScan.TestData
 {
     public class LoginData
     {
-        public string LoginName = "kmilbourne@aislerocket.com";
-        public string LoginPassw = "ars4LYFE";
+        public string LoginName = "TypeYourLoginName";
+        public string LoginPassw = "TypeYourPasswordHere";
     }
 }
